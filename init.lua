@@ -1,3 +1,9 @@
+--[[ 
+	Version: 1.0
+	Creator: Amy (Misukins)
+	© Misukins You can change this and share but give me some credit ok?
+--]]
+
 MISUPS = { 
     description = "Allows for customization of the player"
 }
@@ -18,12 +24,12 @@ function MISUPS:new()
 	TweakDB:SetFlat("Character.Player_Primary_Stats_Base_inline12.value", Player_Crit_Damage) 		-- DO NOT CHANGE
 	TweakDB:SetFlat("Character.Player_Primary_Stats_Base_inline10.value", Player_Carry_Capacity) 	-- DO NOT CHANGE
 
-
 	--TweakDB:SetFlat("Character.Player_Primary_Stats_Base_inline1", Player_testing) -- JUST for looking mone stats
 
 	--[[ TODO more stats
 		Player_Primary_Stats_Base_inline8  == armor 
 	]]
+
 	Player_Stats = {}
 	createConstantStatModifier("PlayerHealthBonus", "Additive", "BaseStats.Health", Player_Health_Bonus)	-- DO NOT CHANGE
 	createConstantStatModifier("PlayerStaminaBonus", "Additive", "BaseStats.Stamina", Player_Stamina_Bonus)	-- DO NOT CHANGE
