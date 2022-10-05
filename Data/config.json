@@ -1,0 +1,18 @@
+{
+    "Player_Carry_Capacity":0,
+    "Player_Crit_Damage":0,
+    "Player_Crit_Chance":0,
+    "Player_Health_Bonus":0,
+    "Player_Armor_Bonus":0,
+    "Player_Stamina_Bonus":0,
+    "Player_Fall_Bonus":0,
+    "Player_Mitigation_Bonus":0,
+    "Player_Thermal_Bonus":0,
+    "Player_Chemical_Bonus":0,
+    "Player_MitigationSTR_Bonus":0,
+    "Player_Bleeding_Bonus":0,
+    "Player_Burn_Bonus":0,
+    "Player_Poison_Bonus":0,
+    "Player_Shock_Bonus":0,
+    "Player_Electrical_Bonus":0
+}
