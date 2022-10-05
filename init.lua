@@ -3,7 +3,7 @@
 	Creator: Amy (Misukins)
 --]]
 
-MISUPS = { 
+CLC = { 
     title 				= "Custom Player Stats",
 	description 		= "Allows for customization of the player",
 	version 			= "1.0",
@@ -11,18 +11,19 @@ MISUPS = {
 	copy 				= "© Misukins You can change this and share but give me some credit ok?"
 }
 
-function MISUPS:new()
+function CLC:new()
 
-    registerForEvent("onInit", function() 
-	dofile("modules/Native Settings Integration.lua")
-	dofile("modules/Set Values.lua")
-	dofile("modules/Load Functions.lua")
-	print("Custom Level Cap fully loaded!!")
+    registerForEvent("onInit", function()
+		dofile("modules/Native Settings Integration.lua")
+		dofile("modules/Set Values.lua")
+		dofile("modules/Load Functions.lua")
+
+		print("Custom Level Cap fully loaded!!")
     end)
 
 end
 
-return MISUPS:new()
+return CLC:new()
 
 --[[
 MISUPS = { 
