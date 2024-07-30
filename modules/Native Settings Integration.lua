@@ -10,9 +10,11 @@ CLC = {
 	creator 			= "Misukins"
 }
 
-local config = require("modules/utils/config")
+local IProps 			= { deltaTime = 0 }
 
-curSettings = config.loadFile("Data/config.json")
+local config 			= require("modules/utils/config")
+curSettings 			= config.loadFile("Data/config.json")
+
 Player_Carry_Capacity 		= curSettings.Player_Carry_Capacity
 Player_Crit_Damage 			= curSettings.Player_Crit_Damage
 Player_Crit_Chance 			= curSettings.Player_Crit_Chance
@@ -33,26 +35,25 @@ Player_Shock_Bonus 			= curSettings.Player_Shock_Bonus
 Player_Electrical_Bonus 	= curSettings.Player_Electrical_Bonus
 
 function CLC:new()
-
     defaultSettings = {
-	Player_Carry_Capacity = 0,
-    Player_Crit_Damage = 0,
-    Player_Crit_Chance = 0,
-    Player_Health_Bonus = 0,
-    Player_Armor_Bonus = 0,
-    Player_Stamina_Bonus = 0,
-    Player_Fall_Bonus = 0,
-    Player_Mitigation_Bonus = 0,
-    Player_Thermal_Bonus = 0,
-    Player_Chemical_Bonus = 0,
-    Player_MitigationSTR_Bonus = 0,
-    Player_Bleeding_Bonus = 0,
-    Player_Burn_Bonus = 0,
-    Player_Poison_Bonus = 0,
-    Player_Shock_Bonus = 0,
-    Player_Electrical_Bonus = 0,
-	Player_ExpD_Bonus = 0,
-	Player_DOverTime_Bonus = 0,
+		Player_Carry_Capacity 		= 0,
+		Player_Crit_Damage 			= 0,
+		Player_Crit_Chance 			= 0,
+		Player_Health_Bonus 		= 0,
+		Player_Armor_Bonus 			= 0,
+		Player_Stamina_Bonus 		= 0,
+		Player_Fall_Bonus 			= 0,
+		Player_Mitigation_Bonus 	= 0,
+		Player_Thermal_Bonus 		= 0,
+		Player_Chemical_Bonus 		= 0,
+		Player_MitigationSTR_Bonus  = 0,
+		Player_Bleeding_Bonus 		= 0,
+		Player_Burn_Bonus 			= 0,
+		Player_Poison_Bonus 		= 0,
+		Player_Shock_Bonus 			= 0,
+		Player_Electrical_Bonus 	= 0,
+		Player_ExpD_Bonus 			= 0,
+		Player_DOverTime_Bonus 		= 0,
 	}
 
 	local nativeSettings = GetMod("nativeSettings")
@@ -80,11 +81,11 @@ function CLC:new()
 	end)
 
 	--START
-	nativeSettings.addRangeInt("/CLC/Stats", "Carry Capacity", "Determines the Carry Capacity.", 1, 30000, 1, curSettings.Player_Carry_Capacity, defaultSettings.Player_Carry_Capacity, function(value)
+	nativeSettings.addRangeInt("/CLC/Stats", "Carry Capacity", "Determines the Carry Capacity.", 1, 3000, 1, curSettings.Player_Carry_Capacity, defaultSettings.Player_Carry_Capacity, function(value)
 		curSettings.Player_Carry_Capacity = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
-	nativeSettings.addRangeInt("/CLC/Stats", "Player_Crit_Damage", "Determines the Player_Crit_Damage.", 1, 30000, 1, curSettings.Player_Crit_Damage, defaultSettings.Player_Crit_Damage, function(value)
+	nativeSettings.addRangeInt("/CLC/Stats", "Player_Crit_Damage", "Determines the Player_Crit_Damage.", 1, 3000, 1, curSettings.Player_Crit_Damage, defaultSettings.Player_Crit_Damage, function(value)
 		curSettings.Player_Crit_Damage = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
@@ -92,15 +93,15 @@ function CLC:new()
 		curSettings.Player_Crit_Chance = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
-	nativeSettings.addRangeInt("/CLC/Stats", "Player_Health_Bonus", "Determines the Player_Health_Bonus.", 1, 30000, 1, curSettings.Player_Health_Bonus, defaultSettings.Player_Health_Bonus, function(value)
+	nativeSettings.addRangeInt("/CLC/Stats", "Player_Health_Bonus", "Determines the Player_Health_Bonus.", 1, 3000, 1, curSettings.Player_Health_Bonus, defaultSettings.Player_Health_Bonus, function(value)
 		curSettings.Player_Health_Bonus = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
-	nativeSettings.addRangeInt("/CLC/Stats", "Player_Armor_Bonus", "Determines the Player_Armor_Bonus.", 1, 30000, 1, curSettings.Player_Armor_Bonus, defaultSettings.Player_Armor_Bonus, function(value)
+	nativeSettings.addRangeInt("/CLC/Stats", "Player_Armor_Bonus", "Determines the Player_Armor_Bonus.", 1, 3000, 1, curSettings.Player_Armor_Bonus, defaultSettings.Player_Armor_Bonus, function(value)
 		curSettings.Player_Armor_Bonus = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
-	nativeSettings.addRangeInt("/CLC/Stats", "Player_Stamina_Bonus", "Determines the Player_Stamina_Bonus.", 1, 3000, 1, curSettings.Player_Stamina_Bonus, defaultSettings.Player_Stamina_Bonus, function(value)
+	nativeSettings.addRangeInt("/CLC/Stats", "Player_Stamina_Bonus", "Determines the Player_Stamina_Bonus.", 1, 300, 1, curSettings.Player_Stamina_Bonus, defaultSettings.Player_Stamina_Bonus, function(value)
 		curSettings.Player_Stamina_Bonus = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
@@ -120,7 +121,7 @@ function CLC:new()
 		curSettings.Player_Chemical_Bonus = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
-	nativeSettings.addRangeInt("/CLC/Stats", "Player_MitigationSTR_Bonus", "Determines the Player_MitigationSTR_Bonus.", 1, 30000, 1, curSettings.Player_MitigationSTR_Bonus, defaultSettings.Player_MitigationSTR_Bonus, function(value)
+	nativeSettings.addRangeInt("/CLC/Stats", "Player_MitigationSTR_Bonus", "Determines the Player_MitigationSTR_Bonus.", 1, 3000, 1, curSettings.Player_MitigationSTR_Bonus, defaultSettings.Player_MitigationSTR_Bonus, function(value)
 		curSettings.Player_MitigationSTR_Bonus = value
 		config.saveFile("Data/config.json", curSettings)
 	end)
@@ -153,10 +154,16 @@ function CLC:new()
 		config.saveFile("Data/config.json", curSettings)
 	end)
 
+	registerForEvent("onUpdate", function(deltaTime)
+		IProps.deltaTime = IProps.deltaTime + deltaTime
+		if IProps.deltaTime > 1 then
+			runUpdates()
+			IProps.deltaTime = IProps.deltaTime - 1
+		end
+	end)
 end
 
 function refreshVariables()
-
 	Player_Carry_Capacity 		= curSettings.Player_Carry_Capacity
 	Player_Crit_Damage 			= curSettings.Player_Crit_Damage
 	Player_Crit_Chance 			= curSettings.Player_Crit_Chance
@@ -175,14 +182,19 @@ function refreshVariables()
 	Player_Poison_Bonus 		= curSettings.Player_Poison_Bonus
 	Player_Shock_Bonus 			= curSettings.Player_Shock_Bonus
 	Player_Electrical_Bonus 	= curSettings.Player_Electrical_Bonus
+end
 
+function runUpdates(player)
+	local player = Game.GetPlayer()
+	if not player then
+		return
+	end
+	refreshVariables()
 end
 
 function reloadCLCMods()
-
 	refreshVariables()
 	dofile("modules/Set Values.lua")
-
 end
 
 return CLC:new()
